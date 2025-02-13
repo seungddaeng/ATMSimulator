@@ -7,12 +7,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/pantallainicio">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_iniciar_sesion"
         android:layout_width="300dp"
-        android:layout_height="600dp"
+        android:layout_height="560dp"
         app:cardCornerRadius="50dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -25,7 +33,7 @@
                 android:id="@+id/iniciar_sesion_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/titulo_iniciar_sesion"
                 android:textColor="@color/black"
                 android:textSize="23sp"
@@ -187,7 +195,7 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:text="Borrar"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 android:backgroundTint="@color/purple2"
                 app:layout_constraintTop_toBottomOf="@id/btn8"
                 app:layout_constraintStart_toEndOf="@id/btn0"
@@ -198,11 +206,11 @@
             <Button
                 android:id="@+id/boton_iniciar_sesion"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/rosado"
                 android:text="@string/texto_boton_iniciar_sesion"
-                android:textSize="18sp"
+                android:textSize="21sp"
                 android:textAllCaps="false"
                 android:padding="10dp"
                 app:layout_constraintTop_toBottomOf="@id/btnBorrar"
@@ -210,6 +218,23 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="40dp" />
+
+
+            <ImageButton
+                android:id="@+id/boton_mostrar_pin"
+                android:layout_width="33dp"
+                android:layout_height="31dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Mostrar PIN"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ojo"
+                app:layout_constraintBottom_toTopOf="@+id/btn3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.906"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iniciar_sesion_titulo"
+                app:layout_constraintVertical_bias="0.981"
+                android:layout_marginBottom="25dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

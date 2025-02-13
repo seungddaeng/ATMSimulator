@@ -21,35 +21,49 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_saldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saldo: $0.00"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tv_atm"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_atm"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="¿Qué deseas realizar?"
+        android:textColor="@color/white"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_saldo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Saldo: $0.00"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tv_atm"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="10dp" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/contenedor_operaciones"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:cardCornerRadius="40dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardElevation="10dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="20dp">
 
-            <EditText
+          <!--  <EditText
                 android:id="@+id/edit_text_cantidad"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
@@ -60,7 +74,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" /> -->
 
             <Button
                 android:id="@+id/btn_depositar"
@@ -73,7 +87,7 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@id/btn_retirar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_text_cantidad" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_retirar"
@@ -83,10 +97,10 @@
                 android:layout_marginTop="45dp"
                 android:backgroundTint="@color/rojo"
                 android:text="Retirar"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_depositar"
-                app:layout_constraintTop_toBottomOf="@id/edit_text_cantidad" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_cerrar_sesion"

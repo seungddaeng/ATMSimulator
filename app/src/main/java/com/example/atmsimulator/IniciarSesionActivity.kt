@@ -3,6 +3,8 @@ package com.example.atmsimulator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.atmsimulator.databinding.ActivityIniciarSesionBinding
@@ -11,6 +13,7 @@ class IniciarSesionActivity : AppCompatActivity() {
 
     // Declarar el binding
     private lateinit var binding: ActivityIniciarSesionBinding
+    val ATMUtils = ATMUtils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +40,24 @@ class IniciarSesionActivity : AppCompatActivity() {
         // Configurar listener para el botón de borrar
         binding.btnBorrar.setOnClickListener { borrarUltimoNumero() }
 
+
+        // Botón para mostrar/ocultar el PIN
+        binding.botonMostrarPin.setOnClickListener {
+            val display = binding.tvDisplay
+            if (display.transformationMethod is PasswordTransformationMethod) {
+                display.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                display.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+            display.text = display.text.toString()
+        }
+
         // Configurar listener para el botón de iniciar sesión
         binding.botonIniciarSesion.setOnClickListener {
             val pin = binding.tvDisplay.text.toString()
 
             // Validar que sea un PIN válido antes de consultar SharedPreferences
-            if (!validarFormatoPIN(pin)) {
+            if (!ATMUtils.validarFormatoPIN(pin)) {
                 Toast.makeText(this, "PIN inválido. Debe tener 4 dígitos numéricos.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -102,7 +117,7 @@ class IniciarSesionActivity : AppCompatActivity() {
     /**
      * Valida si el PIN tiene exactamente 4 dígitos y solo números
      */
-    private fun validarFormatoPIN(pin: String): Boolean {
+    fun validarFormatoPIN(pin: String): Boolean {
         return pin.length == 4 && pin.all { it.isDigit() }
     }
 
