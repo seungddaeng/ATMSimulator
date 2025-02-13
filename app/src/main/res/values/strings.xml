@@ -11,5 +11,10 @@
     <string name="ingrese_cantidad">Ingrese cantidad</string>
     <string name="depositar">Depositar</string>
     <string name="ingrese_su_pin">Ingrese su PIN</string>
+    <string name="a">¿Qué cantidad desea depositar?</string>
+    <string name="texto_boton_depositar">Depositar\n</string>
+    <string name="texto_diguite_cantidad">Diguite la cantidad</string>
+    <string name="texto_desea_retirar">¿Qué cantidad desea retirar?</string>
+    <string name="texto_boton_retirar">Retirar\n</string>
 
 </resources>

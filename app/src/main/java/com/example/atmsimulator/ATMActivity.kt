@@ -18,6 +18,9 @@ class ATMActivity : AppCompatActivity() {
         binding = ActivityAtmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        pin = intent.getStringExtra("PIN") ?: ""
+        saldo = intent.getDoubleExtra("SALDO", 0.0)
+
 //        // Obtener PIN y saldo del intent
 //        pin = intent.getStringExtra("PIN") ?: ""
 //        saldo = intent.getDoubleExtra("SALDO", 0.0)
@@ -60,37 +63,20 @@ class ATMActivity : AppCompatActivity() {
 
         binding.btnDepositar.setOnClickListener {
             val intent = Intent(this, DepositoActivity::class.java)
+            intent.putExtra("PIN", pin)
+            intent.putExtra("SALDO", saldo)
             startActivity(intent)
         }
 
         binding.btnRetirar.setOnClickListener {
             val intent = Intent(this, RetiroActivity::class.java)
+            intent.putExtra("PIN", pin)
+            intent.putExtra("SALDO", saldo)
             startActivity(intent)
         }
 
     }
 
 
-//    private fun actualizarSaldo() {
-//        binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
-//    }
-//
-//    private fun guardarSaldo() {
-//        val sharedPref = getSharedPreferences("ATM_PREFS", Context.MODE_PRIVATE)
-//        val editor = sharedPref.edit()
-//        editor.putFloat(pin, saldo.toFloat())
-//        editor.apply()
-//    }
-//
-//    private fun limpiarCampoCantidad() {
-//        binding.editTextCantidad.text.clear()
-//    }
-//
-//    private fun cerrarSesion() {
-//        val intent = Intent(this, IniciarSesionActivity::class.java)
-//
-//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(intent)
-//        finish()
-//    }
+
 }

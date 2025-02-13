@@ -32,18 +32,6 @@
         android:textStyle="bold"
         />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_saldo"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Saldo: $0.00"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textColor="@color/black"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tv_atm"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginTop="10dp" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/contenedor_operaciones"
