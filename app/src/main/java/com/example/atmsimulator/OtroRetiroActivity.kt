@@ -18,6 +18,8 @@ class OtroRetiroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtroRetiroBinding
     private var saldo = 0.0
     private var pin = ""
+    private var saldoVisible = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtroRetiroBinding.inflate(layoutInflater)
@@ -25,7 +27,7 @@ class OtroRetiroActivity : AppCompatActivity() {
 
         pin = intent.getStringExtra("PIN") ?: ""
         saldo = intent.getDoubleExtra("SALDO", 0.0)
-        binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
+        actualizarSaldo()
 
         binding.btn1.setOnClickListener { agregarNumero("1") }
         binding.btn2.setOnClickListener { agregarNumero("2") }
@@ -43,13 +45,8 @@ class OtroRetiroActivity : AppCompatActivity() {
         binding.botonRealizarRetiro.setOnClickListener { realizarDeposito() }
 
         binding.botonMostrarPin.setOnClickListener {
-            val display = binding.tvSaldo
-            if (display.transformationMethod is PasswordTransformationMethod) {
-                display.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            } else {
-                display.transformationMethod = PasswordTransformationMethod.getInstance()
-            }
-            display.text = display.text.toString()
+            saldoVisible = !saldoVisible
+            actualizarSaldo()
         }
 
     }
@@ -90,7 +87,13 @@ class OtroRetiroActivity : AppCompatActivity() {
     }
 
     private fun actualizarSaldo() {
-        binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
+        if (saldoVisible) {
+            binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
+            binding.botonMostrarPin.setImageResource(R.drawable.ojo)
+        } else {
+            binding.tvSaldo.text = "Saldo: ****"
+            binding.botonMostrarPin.setImageResource(R.drawable.ojo_cerrado)
+        }
     }
 
     private fun guardarSaldo() {
