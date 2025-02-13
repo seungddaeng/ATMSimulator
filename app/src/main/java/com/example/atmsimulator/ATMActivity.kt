@@ -12,85 +12,62 @@ class ATMActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAtmBinding
     private var saldo = 0.0
     private var pin = ""
+    private var saldoVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAtmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        // Obtener PIN y saldo del intent
-//        pin = intent.getStringExtra("PIN") ?: ""
-//        saldo = intent.getDoubleExtra("SALDO", 0.0)
-//
-//        actualizarSaldo()
-//
-//        binding.btnDepositar.setOnClickListener {
-//            val monto = binding.editTextCantidad.text.toString().toDoubleOrNull()
-//            if (monto != null && monto > 0) {
-//                saldo += monto
-//                guardarSaldo()
-//                actualizarSaldo()
-//                limpiarCampoCantidad()
-//                Toast.makeText(this, "Depósito exitoso", Toast.LENGTH_SHORT).show()
-//            } else {
-//                Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        binding.btnRetirar.setOnClickListener {
-//            val monto = binding.editTextCantidad.text.toString().toDoubleOrNull()
-//            if (monto != null && monto > 0) {
-//                if (saldo >= monto) {
-//                    saldo -= monto
-//                    guardarSaldo()
-//                    actualizarSaldo()
-//                    limpiarCampoCantidad()
-//                    Toast.makeText(this, "Retiro exitoso", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
-//                }
-//            } else {
-//                Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        binding.btnCerrarSesion.setOnClickListener {
-//            cerrarSesion()
-//        }
+        pin = intent.getStringExtra("PIN") ?: ""
+
+        saldo = obtenerSaldo(pin).toDouble()
+
+        actualizarSaldo()
+
+        binding.btnMostrarSaldo.setOnClickListener {
+            saldoVisible = !saldoVisible
+            actualizarSaldo()
+        }
 
         binding.btnDepositar.setOnClickListener {
             val intent = Intent(this, DepositoActivity::class.java)
+            intent.putExtra("PIN", pin)
+            intent.putExtra("SALDO", saldo)
             startActivity(intent)
         }
 
         binding.btnRetirar.setOnClickListener {
             val intent = Intent(this, RetiroActivity::class.java)
+            intent.putExtra("PIN", pin)
+            intent.putExtra("SALDO", saldo)
             startActivity(intent)
         }
 
+        binding.btnCerrarSesion.setOnClickListener {
+            cerrarSesion()
+        }
     }
 
+    private fun actualizarSaldo() {
+        if (saldoVisible) {
+            binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
+            binding.btnMostrarSaldo.setImageResource(R.drawable.ojo)
+        } else {
+            binding.tvSaldo.text = "Saldo: ****"
+            binding.btnMostrarSaldo.setImageResource(R.drawable.ojo_cerrado)
+        }
+    }
 
-//    private fun actualizarSaldo() {
-//        binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
-//    }
-//
-//    private fun guardarSaldo() {
-//        val sharedPref = getSharedPreferences("ATM_PREFS", Context.MODE_PRIVATE)
-//        val editor = sharedPref.edit()
-//        editor.putFloat(pin, saldo.toFloat())
-//        editor.apply()
-//    }
-//
-//    private fun limpiarCampoCantidad() {
-//        binding.editTextCantidad.text.clear()
-//    }
-//
-//    private fun cerrarSesion() {
-//        val intent = Intent(this, IniciarSesionActivity::class.java)
-//
-//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(intent)
-//        finish()
-//    }
+    private fun obtenerSaldo(pin: String): Float {
+        val sharedPref = getSharedPreferences("ATM_PREFS", Context.MODE_PRIVATE)
+        return sharedPref.getFloat(pin, 0.0f)
+    }
+
+    private fun cerrarSesion() {
+        val intent = Intent(this, IniciarSesionActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
 }

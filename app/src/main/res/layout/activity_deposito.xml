@@ -2,16 +2,154 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondovacio"
     tools:context=".DepositoActivity">
-    <Button
-        android:id="@+id/otro_deposito_boton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Otro deposito"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_deposito"
+        android:layout_width="298dp"
+        android:layout_height="451dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tv_deposito_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Depositar"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_10"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple"
+                android:text="10"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_deposito_titulo" />
+
+            <Button
+                android:id="@+id/btn_20"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple"
+                android:text="20"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_50"
+                app:layout_constraintStart_toEndOf="@id/btn_10"
+                app:layout_constraintTop_toBottomOf="@id/tv_deposito_titulo" />
+
+            <Button
+                android:id="@+id/btn_50"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/purple"
+                android:text="50"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_20"
+                app:layout_constraintTop_toBottomOf="@id/tv_deposito_titulo" />
+
+            <Button
+                android:id="@+id/btn_100"
+                android:layout_width="78dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple"
+                android:text="100"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_10" />
+
+            <Button
+                android:id="@+id/btn_200"
+                android:layout_width="78dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple"
+                android:text="200"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_500"
+                app:layout_constraintStart_toEndOf="@id/btn_100"
+                app:layout_constraintTop_toBottomOf="@id/btn_20" />
+
+            <Button
+                android:id="@+id/btn_500"
+                android:layout_width="78dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/purple"
+                android:text="500"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_200"
+                app:layout_constraintTop_toBottomOf="@id/btn_50" />
+
+            <Button
+                android:id="@+id/btn_otro"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/purple2"
+                android:text="Otro"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_100" />
+
+            <Button
+                android:id="@+id/btn_regresar_deposito"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/rosado"
+                android:text="Regresar"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_otro" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
