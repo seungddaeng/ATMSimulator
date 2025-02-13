@@ -25,9 +25,6 @@
             android:name=".DepositoActivity"
             android:exported="false" />
         <activity
-            android:name=".RetiroDepositoActivity"
-            android:exported="false" />
-        <activity
             android:name=".IniciarSesionActivity"
             android:exported="true">
             <intent-filter>
