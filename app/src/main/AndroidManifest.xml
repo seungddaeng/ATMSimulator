@@ -25,6 +25,9 @@
             android:name=".DepositoActivity"
             android:exported="false" />
         <activity
+            android:name=".ComprobanteActivity"
+            android:exported="false" />
+        <activity
             android:name=".IniciarSesionActivity"
             android:exported="true">
             <intent-filter>

@@ -18,9 +18,10 @@ class IniciarSesionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inflar el layout usando View Binding
+        // 🔥 Esto inicializa el binding correctamente 🔥
         binding = ActivityIniciarSesionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // Inicializar cuentas de prueba
         inicializarCuentas()
