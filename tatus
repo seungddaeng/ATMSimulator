@@ -1,0 +1,13 @@
+* [33mf096291[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mmel[m[33m)[m made some last moment changes
+*   [33m4aa24be[m Merge branch 'Tatiana' into develop
+[32m|[m[33m\[m  
+[32m|[m * [33me71b618[m finished setting up activites: otroDeposito and otroRetiro. retiro and deposito can only be multiples of 10.
+* [33m|[m [33m1a41bbf[m deposit, withdrawal, and balance visibility toggle functionality
+* [33m|[m [33m2d44c91[m details and images
+[33m|[m[33m/[m  
+* [33me1d174a[m[33m ([m[1;32mmain[m[33m)[m changed buttons activty, added new activities to be corrected
+* [33mf86e694[m changed buttons activty, added new activities to be corrected
+* [33m1f95050[m optimized login and keypad
+* [33mabaa26f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m ATM inteface
+* [33mfd653a6[m Revert "ATM inteface"
+* [33m84190f0[m ATM inteface

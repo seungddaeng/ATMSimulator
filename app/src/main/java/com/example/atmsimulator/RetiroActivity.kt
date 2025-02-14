@@ -18,11 +18,9 @@ class RetiroActivity : AppCompatActivity() {
         binding = ActivityRetiroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtener PIN y saldo del intent
         pin = intent.getStringExtra("PIN") ?: ""
         saldo = intent.getDoubleExtra("SALDO", 0.0)
 
-        // Configurar listeners para los botones de retiro
         binding.btn10.setOnClickListener { realizarRetiro(10.0) }
         binding.btn20.setOnClickListener { realizarRetiro(20.0) }
         binding.btn50.setOnClickListener { realizarRetiro(50.0) }
@@ -31,9 +29,10 @@ class RetiroActivity : AppCompatActivity() {
         binding.btn500.setOnClickListener { realizarRetiro(500.0) }
 
         binding.btnOtro.setOnClickListener {
-            val intent = Intent(this, OtroRetiroActivity::class.java)
-            intent.putExtra("PIN", pin)
-            intent.putExtra("SALDO", saldo)
+            val intent = Intent(this, OtroRetiroActivity::class.java).apply {
+                putExtra("PIN", pin)
+                putExtra("SALDO", saldo)
+            }
             startActivity(intent)
         }
 
@@ -42,33 +41,39 @@ class RetiroActivity : AppCompatActivity() {
         }
     }
 
-
     private fun realizarRetiro(monto: Double) {
-        if (monto > 0) {
-            if (saldo >= monto) {
-                saldo -= monto
-                guardarSaldo()
-                Toast.makeText(this, "Retiro exitoso: $${"%.2f".format(monto)}", Toast.LENGTH_SHORT).show()
-                regresarAlATM()
-            } else {
-                Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
+        if (monto > 0 && saldo >= monto) {
+            val saldoAnterior = saldo
+            saldo -= monto
+            guardarSaldo()
+
+            val intent = Intent(this, ComprobanteActivity::class.java).apply {
+                putExtra("PIN", pin)
+                putExtra("SALDO_ANTERIOR", saldoAnterior)
+                putExtra("MONTO", monto)
+                putExtra("SALDO_NUEVO", saldo)
+                putExtra("TIPO", "Retiro")
             }
+            startActivity(intent)
+            finish()
         } else {
-            Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun guardarSaldo() {
         val sharedPref = getSharedPreferences("ATM_PREFS", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putFloat(pin, saldo.toFloat())
-        editor.apply()
+        with(sharedPref.edit()) {
+            putFloat(pin, saldo.toFloat())
+            apply()
+        }
     }
 
     private fun regresarAlATM() {
-        val intent = Intent(this, ATMActivity::class.java)
-        intent.putExtra("PIN", pin)
-        intent.putExtra("SALDO", saldo)
+        val intent = Intent(this, ATMActivity::class.java).apply {
+            putExtra("PIN", pin)
+            putExtra("SALDO", saldo)
+        }
         startActivity(intent)
         finish()
     }

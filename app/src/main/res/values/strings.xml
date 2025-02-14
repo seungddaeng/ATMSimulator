@@ -17,4 +17,10 @@
     <string name="texto_desea_retirar">¿Qué cantidad desea retirar?</string>
     <string name="texto_boton_retirar">Retirar\n</string>
 
+    <string name="comprobante_titulo">%s Comprobante</string>
+    <string name="saldo_anterior">Saldo anterior: $%.2f</string>
+    <string name="monto_transaccion">Monto: $%.2f</string>
+    <string name="saldo_nuevo">Saldo nuevo: $%.2f</string>
+    <string name="btn_realizar_otra_transaccion">Realizar otra transacción</string>
+
 </resources>

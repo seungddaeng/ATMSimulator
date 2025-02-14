@@ -30,9 +30,10 @@ class DepositoActivity : AppCompatActivity() {
         binding.btn500.setOnClickListener { realizarDeposito(500.0) }
 
         binding.btnOtro.setOnClickListener {
-            val intent = Intent(this, OtroDepositoActivity::class.java)
-            intent.putExtra("PIN", pin)
-            intent.putExtra("SALDO", saldo)
+            val intent = Intent(this, OtroDepositoActivity::class.java).apply {
+                putExtra("PIN", pin)
+                putExtra("SALDO", saldo)
+            }
             startActivity(intent)
         }
 
@@ -43,10 +44,19 @@ class DepositoActivity : AppCompatActivity() {
 
     private fun realizarDeposito(monto: Double) {
         if (monto > 0) {
+            val saldoAnterior = saldo
             saldo += monto
             guardarSaldo()
-            Toast.makeText(this, "Depósito exitoso: $${"%.2f".format(monto)}", Toast.LENGTH_SHORT).show()
-            regresarAlATM()
+
+            val intent = Intent(this, ComprobanteActivity::class.java).apply {
+                putExtra("PIN", pin)
+                putExtra("SALDO_ANTERIOR", saldoAnterior)
+                putExtra("MONTO", monto)
+                putExtra("SALDO_NUEVO", saldo)
+                putExtra("TIPO", "Depósito")
+            }
+            startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
         }
@@ -54,15 +64,17 @@ class DepositoActivity : AppCompatActivity() {
 
     private fun guardarSaldo() {
         val sharedPref = getSharedPreferences("ATM_PREFS", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putFloat(pin, saldo.toFloat())
-        editor.apply()
+        with(sharedPref.edit()) {
+            putFloat(pin, saldo.toFloat())
+            apply()
+        }
     }
 
     private fun regresarAlATM() {
-        val intent = Intent(this, ATMActivity::class.java)
-        intent.putExtra("PIN", pin)
-        intent.putExtra("SALDO", saldo)
+        val intent = Intent(this, ATMActivity::class.java).apply {
+            putExtra("PIN", pin)
+            putExtra("SALDO", saldo)
+        }
         startActivity(intent)
         finish()
     }

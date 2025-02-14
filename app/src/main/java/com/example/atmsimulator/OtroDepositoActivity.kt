@@ -52,32 +52,52 @@ class OtroDepositoActivity : AppCompatActivity() {
     }
 
 
+//    private fun realizarDeposito() {
+//        val monto = binding.tvDepositoDisplay.text.toString().toDoubleOrNull()
+//        if (monto != null && monto > 0) {
+//            // Verificar si el monto es múltiplo de 10
+//            if (monto.toInt() % 10 == 0) {
+//                // Verificar si hay saldo suficiente
+//                if (monto <= saldo) {
+//                    saldo -= monto
+//                    guardarSaldo()
+//                    actualizarSaldo()
+//                    limpiarCampoCantidad()
+//                    Toast.makeText(this, "Depósito exitoso", Toast.LENGTH_SHORT).show()
+//                    cerrarSesion()
+//                } else {
+//                    Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
+//                }
+//            } else {
+//                Toast.makeText(this, "El monto debe ser múltiplo de 10", Toast.LENGTH_SHORT).show()
+//            }
+//        } else {
+//            Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
+//        }
+//    }
     private fun realizarDeposito() {
         val monto = binding.tvDepositoDisplay.text.toString().toDoubleOrNull()
         if (monto != null && monto > 0) {
-            // Verificar si el monto es múltiplo de 10
-            if (monto.toInt() % 10 == 0) {
-                // Verificar si hay saldo suficiente
-                if (monto <= saldo) {
-                    saldo -= monto
-                    guardarSaldo()
-                    actualizarSaldo()
-                    limpiarCampoCantidad()
-                    Toast.makeText(this, "Depósito exitoso", Toast.LENGTH_SHORT).show()
-                    cerrarSesion()
-                } else {
-                    Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this, "El monto debe ser múltiplo de 10", Toast.LENGTH_SHORT).show()
-            }
+            val saldoAnterior = saldo
+            saldo += monto
+            guardarSaldo()
+
+            val intent = Intent(this, ComprobanteActivity::class.java)
+            intent.putExtra("PIN", pin)
+            intent.putExtra("SALDO_ANTERIOR", saldoAnterior)
+            intent.putExtra("MONTO", monto)
+            intent.putExtra("SALDO_NUEVO", saldo)
+            intent.putExtra("TIPO", "Depósito")
+            startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
         }
     }
 
 
-        private fun agregarNumero(numero: String) {
+
+    private fun agregarNumero(numero: String) {
             val currentText = binding.tvDepositoDisplay.text.toString()
             binding.tvDepositoDisplay.text = currentText + numero
         }
