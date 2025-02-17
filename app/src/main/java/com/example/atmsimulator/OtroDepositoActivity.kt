@@ -28,8 +28,6 @@ class OtroDepositoActivity : AppCompatActivity() {
         saldo = intent.getDoubleExtra("SALDO", 0.0)
         actualizarSaldo()
 
-
-
         binding.btn1.setOnClickListener { agregarNumero("1") }
         binding.btn2.setOnClickListener { agregarNumero("2") }
         binding.btn3.setOnClickListener { agregarNumero("3") }
@@ -51,30 +49,6 @@ class OtroDepositoActivity : AppCompatActivity() {
         }
     }
 
-
-//    private fun realizarDeposito() {
-//        val monto = binding.tvDepositoDisplay.text.toString().toDoubleOrNull()
-//        if (monto != null && monto > 0) {
-//            // Verificar si el monto es múltiplo de 10
-//            if (monto.toInt() % 10 == 0) {
-//                // Verificar si hay saldo suficiente
-//                if (monto <= saldo) {
-//                    saldo -= monto
-//                    guardarSaldo()
-//                    actualizarSaldo()
-//                    limpiarCampoCantidad()
-//                    Toast.makeText(this, "Depósito exitoso", Toast.LENGTH_SHORT).show()
-//                    cerrarSesion()
-//                } else {
-//                    Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
-//                }
-//            } else {
-//                Toast.makeText(this, "El monto debe ser múltiplo de 10", Toast.LENGTH_SHORT).show()
-//            }
-//        } else {
-//            Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
-//        }
-//    }
     private fun realizarDeposito() {
         val monto = binding.tvDepositoDisplay.text.toString().toDoubleOrNull()
         if (monto != null && monto > 0) {
@@ -95,19 +69,18 @@ class OtroDepositoActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun agregarNumero(numero: String) {
-            val currentText = binding.tvDepositoDisplay.text.toString()
-            binding.tvDepositoDisplay.text = currentText + numero
-        }
+        val currentText = binding.tvDepositoDisplay.text.toString()
+        binding.tvDepositoDisplay.text = currentText + numero
+    }
 
-        private fun borrarUltimoNumero() {
-            val currentText = binding.tvDepositoDisplay.text.toString()
-            if (currentText.isNotEmpty()) {
-                binding.tvDepositoDisplay.text = currentText.dropLast(1)
-            }
+    private fun borrarUltimoNumero() {
+        val currentText = binding.tvDepositoDisplay.text.toString()
+        if (currentText.isNotEmpty()) {
+            binding.tvDepositoDisplay.text = currentText.dropLast(1)
         }
+    }
+
     private fun actualizarSaldo() {
         if (saldoVisible) {
             binding.tvSaldo.text = "Saldo: $${"%.2f".format(saldo)}"
@@ -124,16 +97,4 @@ class OtroDepositoActivity : AppCompatActivity() {
         editor.putFloat(pin, saldo.toFloat())
         editor.apply()
     }
-
-    private fun limpiarCampoCantidad() {
-        binding.tvDepositoDisplay.text = ""
-    }
-    private fun cerrarSesion() {
-        val intent = Intent(this, IniciarSesionActivity::class.java)
-
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish()
-    }
-
-    }
+}

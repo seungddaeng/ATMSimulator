@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/comprobante_titulo"
+        android:text="@string/comprobante"
         android:textColor="@color/black"
         android:textSize="32sp"
         android:textStyle="bold"

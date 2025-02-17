@@ -67,7 +67,8 @@ class OtroRetiroActivity : AppCompatActivity() {
                     intent.putExtra("SALDO_NUEVO", saldo)
                     intent.putExtra("TIPO", "Retiro")
                     startActivity(intent)
-                    finish() // Cerrar esta pantalla después de ir al comprobante
+                    finish()
+                //cierra la pantalla para ir al comprobante
                 } else {
                     Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
                 }
@@ -108,17 +109,5 @@ class OtroRetiroActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putFloat(pin, saldo.toFloat())
         editor.apply()
-    }
-
-    private fun limpiarCampoCantidad() {
-        binding.tvRetiroDisplay.text = ""
-    }
-
-    private fun cerrarSesion() {
-        val intent = Intent(this, IniciarSesionActivity::class.java)
-
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish()
     }
 }

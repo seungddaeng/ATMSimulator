@@ -24,7 +24,7 @@ class ComprobanteActivity : AppCompatActivity() {
         saldoNuevo = intent.getDoubleExtra("SALDO_NUEVO", 0.0)
         val tipoTransaccion = intent.getStringExtra("TIPO") ?: "Transacción"
 
-        // Ahora los valores se pasan correctamente
+        //los valores se pasan correctamente
         binding.tvTipoTransaccion.text = getString(R.string.comprobante_titulo, tipoTransaccion)
         binding.tvSaldoAnterior.text = getString(R.string.saldo_anterior, saldoAnterior)
         binding.tvMontoTransaccion.text = getString(R.string.monto_transaccion, montoTransaccion)
